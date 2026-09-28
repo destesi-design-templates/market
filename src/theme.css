@@ -1,0 +1,194 @@
+/* Market: a bright grocery app. Poppins for display, DM Sans for reading,
+   rounded panels and white cards on a soft shadow, pills for everything you
+   tap. shop.css reads the tokens; the rules below are this template's own.
+   Big tinted panels use this file's own colours, never --shop-accent (a live
+   shop replaces the accent with its brand colour). Everything here is yours. */
+@layer components {
+:root {
+  --shop-bg: #fbfbf6;
+  --shop-ink: #1b2a1f;
+  --shop-muted: #5c6b5f;
+  --shop-line: #e2e8dc;
+  --shop-surface: #eef3e6;
+  --shop-font-body: 'DM Sans', sans-serif;
+  --shop-font-display: 'Poppins', sans-serif;
+  --shop-font-wordmark: 'Poppins', sans-serif;
+  --shop-radius-button: 999px;
+  --shop-radius-card: 18px;
+  --shop-section-y: 44px;
+  --shop-gutter: 4%;
+  --shop-accent: #1f7a3d;
+  --shop-accent-ink: #ffffff;
+  /* This template's own: the fresh green of ticks and badges, the panel tints, the shadows. */
+  --market-fresh: #1f7a3d;
+  --market-leaf: #e3eed6;
+  --market-oat: #f5eee2;
+  --market-card: #ffffff;
+  --market-shadow: 0 1px 2px rgb(27 42 31 / .05), 0 10px 28px -12px rgb(27 42 31 / .16);
+  --market-shadow-lift: 0 2px 4px rgb(27 42 31 / .06), 0 20px 40px -14px rgb(27 42 31 / .26);
+}
+body { font-size: 16px; }
+h1, h2 { font-weight: 700; letter-spacing: -.025em; line-height: 1.1; }
+h2 { font-size: clamp(26px, 2.3vw, 34px); margin-bottom: 22px; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid var(--market-fresh); outline-offset: 3px; }
+
+/* Pills: buttons, the small label above a title, the header's links. */
+.button { padding: 15px 28px; font-weight: 600; border-color: transparent; box-shadow: 0 8px 20px -10px rgb(27 42 31 / .45); }
+.button::after { content: "→" / ""; display: inline-block; margin-left: 10px; transition: transform .2s; }
+.button:hover::after { transform: translateX(3px); }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: var(--market-card); color: var(--market-fresh); font-size: 13px; font-weight: 600; letter-spacing: .01em; text-transform: none; }
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.announcement { background: var(--shop-ink); color: #eef3e6; font-size: 13px; font-weight: 500; padding-block: 9px; }
+
+/* Header: wordmark, the links as pills, the cart as a filled pill on the right. */
+.shop-header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; column-gap: 32px; padding-block: 14px; border-bottom-color: var(--shop-line); }
+.shop-header .wordmark { font-size: 22px; font-weight: 700; letter-spacing: -.03em; }
+.shop-header .shop-nav { justify-self: start; gap: 2px; padding: 4px; border-radius: 999px; background: var(--shop-surface); font-size: 15px; font-weight: 500; }
+.shop-header .shop-nav a { padding: 9px 18px; border-radius: 999px; white-space: nowrap; transition: background .2s, box-shadow .2s; }
+.shop-header .shop-nav a:hover { background: var(--market-card); box-shadow: var(--market-shadow); }
+.shop-header .cart-button, .shop-header > .eyebrow { justify-self: end; }
+.shop-header > .eyebrow { background: var(--shop-surface); padding: 10px 16px; }
+.shop-header .cart-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-color: transparent; font-weight: 600; }
+.shop-header .cart-button::before { content: ""; width: 18px; height: 18px; background: currentColor; -webkit-mask: var(--market-bag) center / contain no-repeat; mask: var(--market-bag) center / contain no-repeat; }
+:root { --market-bag: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z'/%3E%3Cpath d='M9 8V6a3 3 0 0 1 6 0v2'/%3E%3C/svg%3E"); }
+
+/* The hero: a rounded leaf-green panel, the words left, a rounded photo right. */
+section[data-section-type="hero"] { padding-block: 20px 12px; }
+.hero-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); column-gap: 5%; row-gap: 24px; padding: clamp(16px, 2vw, 28px) clamp(16px, 2vw, 28px) clamp(16px, 2vw, 28px) clamp(28px, 5vw, 80px); border-radius: 32px; background: var(--market-leaf); }
+.hero-split h2 { max-width: 12ch; margin: 18px 0 16px; font-size: clamp(42px, 4.6vw, 70px); }
+.hero-split p:not(.eyebrow) { max-width: 36ch; font-size: 18px; color: var(--shop-muted); }
+.hero-split .button { margin-top: 12px; }
+.hero-split > img { aspect-ratio: 4 / 3; height: auto; border-radius: 24px; }
+
+/* Benefits: a row of rounded chips, each with a green tick. */
+section[data-section-type="benefits"] { padding-block: 8px 20px; }
+.benefits { justify-content: center; gap: 10px; border: 0; padding: 0; }
+.benefits p { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 10px; border-radius: 999px; background: var(--market-card); box-shadow: var(--market-shadow); font-size: 15px; font-weight: 500; line-height: 1.3; }
+.benefits p::before { content: "✓" / ""; display: grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--market-fresh); color: #fff; font-size: 13px; font-weight: 700; }
+
+/* Collections: left-aligned titles, pill chips, white cards that lift on hover. */
+.category-chips { gap: 8px; margin-bottom: 24px; }
+.category-chips button { min-height: 44px; padding: 10px 20px; background: var(--market-card); color: var(--shop-ink); border-color: var(--shop-line); font-size: 15px; font-weight: 500; white-space: nowrap; }
+.category-chips button[aria-pressed="true"] { background: var(--shop-accent); color: var(--shop-accent-ink); border-color: transparent; }
+.products { gap: 20px; }
+.product-card { display: flex; flex-direction: column; padding: 10px; border-radius: var(--shop-radius-card); background: var(--market-card); box-shadow: var(--market-shadow); transition: transform .25s, box-shadow .25s; }
+.product-card:hover { transform: translateY(-3px); box-shadow: var(--market-shadow-lift); }
+.product-media { border-radius: 12px; }
+.product-card img { aspect-ratio: 1; }
+.product-badge { top: 10px; left: 10px; padding: 5px 11px; border-radius: 999px; background: var(--market-fresh); color: #fff; font-size: 12px; letter-spacing: .01em; text-transform: none; }
+.product-caption { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 6px 10px; padding: 14px 6px 4px; }
+.product-caption h3 { grid-column: 1 / -1; align-self: start; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; min-height: 2.7em; font-size: 15px; font-weight: 500; line-height: 1.35; }
+.product-caption span { font-family: var(--shop-font-display); font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.product-caption::after { content: "→" / ""; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--shop-surface); font-size: 17px; transition: background .2s, color .2s; }
+.product-card:hover .product-caption::after { background: var(--shop-accent); color: var(--shop-accent-ink); }
+/* The carousel's track clips overflow; a little padding keeps the shadows whole. */
+.products-carousel { margin: -8px -8px 0; padding: 8px 8px 20px; scroll-padding-inline: 8px; }
+.scroll-controls { margin-top: 0; }
+.scroll-controls button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border-radius: 50%; background: var(--market-card); color: var(--shop-ink); border-color: var(--shop-line); font-size: 17px; }
+
+/* A story beside a photo: an oat-coloured panel, the photo rounded inside it. */
+.story-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 6%; padding: clamp(16px, 2vw, 28px); border-radius: 32px; background: var(--market-oat); }
+.story-split > div { padding: clamp(8px, 3vw, 48px); }
+.story-split h2 { max-width: 15ch; margin: 18px 0 14px; font-size: clamp(30px, 3.2vw, 46px); }
+.story-split .story { font-size: 17px; color: var(--shop-muted); }
+.story-split > img { aspect-ratio: 5 / 4; border-radius: 24px; }
+section[data-section-type="rich_text"] .story:empty { display: none; }
+
+/* Questions: the title beside a stack of white cards that open. */
+section[data-section-type="faq"] { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); column-gap: 6%; row-gap: 20px; align-items: start; }
+.faq { display: grid; gap: 12px; }
+.faq details { padding: 0; border: 0; border-radius: var(--shop-radius-card); background: var(--market-card); box-shadow: var(--market-shadow); }
+.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; padding: 14px 16px 14px 24px; list-style: none; font-size: 17px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+" / ""; display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--shop-surface); font-size: 20px; font-weight: 500; transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq p { margin: 0; padding: 0 24px 22px; color: var(--shop-muted); opacity: 1; }
+
+/* Product page: a rounded photo, the details on a white card. */
+section[data-section-type="product_detail"] { padding-top: 28px; }
+.product-detail { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); column-gap: 4%; row-gap: 24px; align-items: start; }
+.product-detail > img, .gallery-main > img, .gallery-main > video, .product-detail .no-photo { aspect-ratio: 1; height: auto; border-radius: 28px; background: var(--shop-surface); }
+.product-detail > [data-sf-target="card"] { align-self: stretch; display: flex; flex-direction: column; justify-content: center; padding: clamp(24px, 3vw, 44px); border-radius: 28px; background: var(--market-card); box-shadow: var(--market-shadow); }
+.product-detail .eyebrow { align-self: flex-start; background: var(--shop-surface); }
+.product-detail > [data-sf-target="card"] > a, .product-detail .button-link { align-self: flex-start; }
+.product-detail h1 { margin: 16px 0 10px; font-size: clamp(32px, 3vw, 46px); }
+.product-detail .price { font-family: var(--shop-font-display); font-size: 30px; font-weight: 700; letter-spacing: -.02em; }
+.product-detail p:not(.eyebrow, .price, .promo-pill, .low-stock) { color: var(--shop-muted); }
+.product-detail button[data-sf-target="button"] { min-height: 56px; margin-top: 14px; border-color: transparent; font-size: 17px; font-weight: 600; }
+.product-detail > div > a, .product-links a { color: var(--shop-muted); font-weight: 500; }
+.product-detail > div > a:hover, .product-links a:hover { color: var(--shop-ink); }
+.quantity { gap: 10px; }
+.quantity > span:first-child { margin-right: 6px; font-weight: 500; }
+.product-detail .quantity button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border-radius: 50%; border-color: var(--shop-line); background: var(--shop-surface); font-size: 18px; }
+.product-detail .variant-chips button { background: var(--market-card); border-color: var(--shop-line); font-weight: 500; }
+.product-detail .variant-chips button[aria-pressed="true"] { background: var(--shop-accent); color: var(--shop-accent-ink); border-color: transparent; }
+.variant-chips .dim { font-weight: 600; }
+.product-detail .thumbs button { width: 72px; min-width: 72px; height: 72px; border: 0; border-radius: 14px; overflow: hidden; }
+/* The row scrolls, so it clips: room for the picked thumb's ring. */
+.thumbs { padding: 4px; margin-inline: -4px; }
+.thumbs button[aria-pressed="true"] { outline: 2px solid var(--shop-ink); outline-offset: 2px; }
+.sheet { border-top-color: var(--shop-line); }
+
+/* The cart: a rounded drawer with soft inputs. */
+.cart { border-radius: 28px 0 0 28px; }
+.cart-lines img { aspect-ratio: 1; border-radius: 12px; }
+.cart-form input:not([type=radio]), .cart-form select { border: 1px solid var(--shop-line); border-radius: 14px; background: var(--market-card); }
+.cart-close, .cart-qty button { border-color: var(--shop-line); border-radius: 50%; }
+
+/* Footer: a deep green base with rounded top corners. */
+footer { margin-top: 40px; border: 0; border-radius: 32px 32px 0 0; background: var(--shop-ink); color: #dfe7d9; }
+footer a:hover { color: #fff; }
+footer a:focus-visible { outline-color: #eef3e6; }
+.shop-footer .wordmark { color: #fff; font-size: 22px; font-weight: 700; letter-spacing: -.03em; }
+.shop-footer h3 { color: #a9baa9; font-size: 12px; font-weight: 600; letter-spacing: .12em; }
+.shop-footer .seller, footer small { color: #b7c4b6; }
+.shop-footer .chips span { border-color: rgb(255 255 255 / .22); }
+
+@media (max-width: 640px) {
+  .shop-header { grid-template-columns: minmax(0, 1fr) auto; row-gap: 10px; padding-block: 12px; }
+  .shop-header .wordmark { grid-area: 1 / 1; font-size: 19px; }
+  .shop-header .cart-button, .shop-header > .eyebrow { grid-area: 1 / 2; }
+  .shop-header .cart-button { padding: 8px 16px; }
+  /* Links and chips scroll sideways, edge to edge, like an app. */
+  .shop-header .shop-nav, .category-chips { flex-wrap: nowrap; overflow-x: auto; margin-inline: -20px; padding: 2px 20px 4px; scrollbar-width: none; }
+  .shop-header .shop-nav { grid-area: 2 / 1 / 3 / 3; width: calc(100% + 40px); gap: 6px; border-radius: 0; background: none; font-size: 14px; }
+  .shop-header .shop-nav a { padding: 8px 14px; background: var(--shop-surface); }
+  .category-chips button { flex: none; }
+  /* Every two-column block stacks. */
+  .hero-split, .story-split, .product-detail, section[data-section-type="faq"] { grid-template-columns: minmax(0, 1fr); }
+  .shop section:not([data-section-type="hero"], [data-section-type="product_detail"]) h2 { font-size: 27px !important; }
+  .shop section[data-section-type="hero"] { padding: 14px 16px 4px !important; }
+  .hero-split { padding: 12px 12px 24px; border-radius: 28px; }
+  .hero-split > img { order: -1; aspect-ratio: 4 / 3; border-radius: 20px; }
+  .hero-split > div { padding-inline: 8px; }
+  .hero-split h2 { margin: 14px 0 10px; }
+  .hero-split p:not(.eyebrow) { font-size: 16px; }
+  .hero-split .button { display: block; text-align: center; }
+  .shop section[data-section-type="benefits"] { padding: 12px 20px 4px !important; }
+  /* Benefits fold into one white card, a row per line. */
+  .benefits { flex-direction: column; gap: 0; padding: 4px 16px; border-radius: var(--shop-radius-card); background: var(--market-card); box-shadow: var(--market-shadow); }
+  .benefits p { padding: 10px 0; border-radius: 0; background: none; box-shadow: none; font-size: 15px; }
+  .benefits p + p { border-top: 1px solid var(--shop-line); }
+  .product-card { padding: 7px; border-radius: 16px; }
+  .product-media { border-radius: 11px; }
+  .product-caption { padding: 10px 4px 2px; gap: 4px 6px; }
+  .product-caption h3 { font-size: 14px; }
+  .product-caption span { font-size: 16px; }
+  .product-caption::after { width: 32px; height: 32px; font-size: 15px; }
+  .shop section[data-section-type="rich_text"] { padding-inline: 16px !important; }
+  .story-split { padding: 12px 12px 20px; border-radius: 28px; }
+  .story-split > div { padding: 4px 8px; }
+  .story-split > img { border-radius: 20px; }
+  .faq summary { padding-left: 18px; font-size: 16px; }
+  .faq p { padding-inline: 18px; }
+  .product-detail > [data-sf-target="card"] { padding: 22px 18px; border-radius: 24px; }
+  .product-detail .eyebrow { font-size: 12px; }
+  .product-detail > img, .gallery-main > img, .gallery-main > video { border-radius: 24px; }
+  .product-detail .price { font-size: 26px; }
+  footer { border-radius: 28px 28px 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-card, .product-caption::after, .button::after, .faq summary::after { transition: none; }
+  .product-card:hover { transform: none; }
+}
+}

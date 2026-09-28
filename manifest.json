@@ -1,0 +1,13 @@
+{
+  "id": "market",
+  "name": "Market",
+  "description": "An app-like market: a hero card on soft green, benefit chips, category pills and white product cards you tap.",
+  "best_for": "Groceries, pharmacy and everyday essentials",
+  "backend": "commerce",
+  "es": {
+    "name": "Mercado",
+    "description": "Un mercado con aire de app: portada en tarjeta verde, beneficios en chips, categorías en píldoras y tarjetas de producto fáciles de tocar.",
+    "best_for": "Mercado, droguería y básicos del día a día"
+  },
+  "hero_compact": false
+}
